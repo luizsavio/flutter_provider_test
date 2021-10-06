@@ -25,4 +25,21 @@ class ClienteController with ChangeNotifier {
      print(this.listaCliente.asMap());
      notifyListeners();
    }
+
+   void alteraItemLista(Cliente cli){
+     Cliente cliEnc = this.listaCliente.singleWhere((element) => element.codcli == cli.codcli);
+     if(cliEnc.codcli > 0){
+       /*for (var value in this.listaCliente) {
+         if(value.codcli == cli.codcli){
+           value = cli;
+         }
+       }*/
+       this.listaCliente.asMap().forEach((index, element) {
+         if(element.codcli == cli.codcli){
+           this.listaCliente[index] = cli;
+         }
+       });
+     }
+     notifyListeners();
+   }
 }

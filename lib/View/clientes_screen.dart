@@ -3,6 +3,8 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:flutter_provider_test/Controller/cliente_controller.dart';
 import 'package:flutter_provider_test/Model/Cliente.dart';
+import 'package:flutter_provider_test/View/cliente_screen.dart';
+import 'package:flutter_provider_test/widgets/custom_modal.dart';
 import 'package:provider/provider.dart';
 
 class ClientesScreen extends StatefulWidget {
@@ -26,13 +28,11 @@ class _ClientesScreenState extends State<ClientesScreen> {
       body: Center(
         child: Container(
           child: ListView(
-              children: data.listaCliente.map((e) => Text(e.nomcli)).toList()),
+              children: data.listaCliente.map((e) => _customLisTile(e)).toList()),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => context
-            .read<ClienteController>()
-            .adicionaItemLista(new Cliente(60, 'Teste', 50, 0)),
+        onPressed: () => showDialog(context: context, builder: (ctx) => pageDetalheCliente(new Cliente(0, '', 0, 0))),
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
@@ -41,11 +41,31 @@ class _ClientesScreenState extends State<ClientesScreen> {
 
   ListTile _customLisTile(Cliente cli){
     return ListTile(
+      onTap: () => showDialog(context: context, builder: (context) => pageDetalheCliente(cli)),
       title: Text(cli.nomcli),
-      subtitle: Column(children: [
-        Text(cli.codcli.toString()),
-        Text(cli.contador.toString())
+      subtitle: Row(children: [
+        Column(
+          children: [
+            Text('agcli : ${cli.agecli.toString()}'),
+            Text('Contador : ${cli.contador.toString()}')
+          ],
+        )
+
       ], ),
+    );
+  }
+
+  Widget pageDetalheCliente(Cliente cliente) {
+    return CustomModal(
+      modalTitleTxt: cliente.nomcli,
+      modalTitleSz: 16,
+      modalTitleBold: true,
+      ellipsis: true,
+      maxLines: 2,
+      modalBody: ClienteScreen(title: 'user',cliente: cliente,),
+      modalWidth: 800,
+      modalHeight: 550,
+      modalFooter: Container(height: 10,),
     );
   }
 }
