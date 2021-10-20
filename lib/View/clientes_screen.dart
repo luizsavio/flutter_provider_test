@@ -17,6 +17,25 @@ class ClientesScreen extends StatefulWidget {
 }
 
 class _ClientesScreenState extends State<ClientesScreen> {
+
+  @override
+  void initState(){
+    super.initState();
+    print('1 - initState');
+  }
+
+  @override
+  void didChangeDependencies(){
+    super.didChangeDependencies();
+    print('1 - didChangeDependencies');
+  }
+
+  @override
+  void dispose(){
+    super.dispose();
+    print('1 - dispose');
+  }
+
   @override
   Widget build(BuildContext context) {
     final data = Provider.of<ClienteController>(context);
