@@ -1,19 +1,21 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_provider_test/Model/Cliente.dart';
 
-class Clientes2Screen extends StatefulWidget {
-  Clientes2Screen({Key? key, required this.title}) : super(key: key);
+class ClientesStreamControllerScreen extends StatefulWidget {
+  ClientesStreamControllerScreen({Key? key, required this.title}) : super(key: key);
 
   final String title;
   @override
-  _Clientes2ScreenState createState() => _Clientes2ScreenState();
+  _ClientesStreamControllerScreenState createState() => _ClientesStreamControllerScreenState();
 }
 
-class _Clientes2ScreenState extends State<Clientes2Screen> {
+class _ClientesStreamControllerScreenState extends State<ClientesStreamControllerScreen> {
 
   StreamController<List<Cliente>> _streamController = StreamController<List<Cliente>>();
+  ScrollController _scrollController = ScrollController();
   late List<Cliente> listaCliente;
   int contador = 31;
 
@@ -21,6 +23,7 @@ class _Clientes2ScreenState extends State<Clientes2Screen> {
   void initState(){
     super.initState();
     _carregarClientes();
+    //FirebaseFirestore.instance.collection('teste').get().then((value) => print('DAqui ${value.docs.length}'));
     print('1 - initState');
   }
 
@@ -40,7 +43,7 @@ class _Clientes2ScreenState extends State<Clientes2Screen> {
   _carregarClientes(){
     List<Cliente> clientes = <Cliente>[];
     for(int i = 1; i <= 30; i++){
-      clientes.add(new Cliente(i, 'Teste $i', i, 0));
+      clientes.add(Cliente(codcli: i, nomcli: 'Teste $i', agecli: i, contador: 0, documentId: ''));
     }
     _streamController.add(clientes);
     /*Timer.periodic(Duration(seconds: 2), (timer) {
@@ -79,12 +82,13 @@ class _Clientes2ScreenState extends State<Clientes2Screen> {
                 clientes = snapshot.data;
               }
               return ListView.builder(
+                controller: _scrollController,
                 itemCount: clientes!.length,
                 itemBuilder: (context, index) {
                   Cliente cli = clientes![index];
                   print(index);
-                  if(index % 20 == 0){
-                    print('Resultado 0 aqui galera');
+                  if(index == clientes.length-1){
+                    print('Resultado pau aqui galera');
                   }
                     return _customLisTile(cli);
                 });

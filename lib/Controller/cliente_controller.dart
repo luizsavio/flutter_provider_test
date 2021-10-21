@@ -7,16 +7,25 @@ class ClienteController with ChangeNotifier {
     _contador = listaCliente.length;
   }
 
+  int _count = 0;
+
+  int get count => _count;
+
+  set count(int value) {
+    _count = value;
+    notifyListeners();
+  }
+
   int _contador = 0;
 
   int get contador => _contador;
 
   late List<Cliente> listaCliente = <Cliente>[
-    Cliente(1, 'Savio', 25, 0),
-    Cliente(2, 'Gabriel', 23, 0),
-    Cliente(3, 'Sarah', 42, 0),
-    Cliente(4, 'Marcos', 20, 0),
-    Cliente(5, 'Fabricio', 18, 0)
+    Cliente(codcli: 1, nomcli: 'Savio', agecli: 25, contador: 0, documentId: ''),
+    Cliente(codcli: 1, nomcli: 'Gabriel', agecli: 23, contador: 0, documentId: ''),
+    Cliente(codcli: 1, nomcli: 'Sarah', agecli: 42, contador: 0, documentId: ''),
+    Cliente(codcli: 1, nomcli: 'Marcos', agecli: 20, contador: 0, documentId: ''),
+    Cliente(codcli: 1, nomcli: 'Fabricio', agecli: 25, contador: 0, documentId: ''),
   ];
 
    void adicionaItemLista(Cliente cli){

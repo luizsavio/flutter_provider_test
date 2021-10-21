@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_provider_test/Controller/cliente_controller.dart';
 import 'package:flutter_provider_test/View/clientes_screen.dart';
+import 'package:flutter_provider_test/View/paginacao_realtime_screen.dart';
 import 'package:provider/provider.dart';
 
-import 'View/clientes2_screen.dart';
+import 'View/clientes_streamcontroller_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Clientes2Screen(title: 'Usuarios'),
+      home: PaginacaoRealtimeScreen(),
     ),);
   }
 }

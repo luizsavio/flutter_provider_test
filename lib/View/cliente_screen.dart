@@ -55,18 +55,10 @@ class _ClienteScreenState extends State<ClienteScreen> {
               RaisedButton(
                   onPressed: () {
                     if (widget.cliente!.codcli > 0) {
-                      context.read<ClienteController>().alteraItemLista(Cliente(
-                          int.parse(_txtCodCliController.text),
-                          _txtNomCliController.text,
-                          int.parse(_txtAgeCliController.text),
-                          0));
+                      context.read<ClienteController>().alteraItemLista(Cliente(codcli: int.parse(_txtCodCliController.text), nomcli: _txtNomCliController.text, agecli: int.parse(_txtAgeCliController.text), contador: 0, documentId: ''));
                     } else {
                       context.read<ClienteController>().adicionaItemLista(
-                          Cliente(
-                              int.parse(_txtCodCliController.text),
-                              _txtNomCliController.text,
-                              int.parse(_txtAgeCliController.text),
-                              0));
+                          Cliente(codcli: int.parse(_txtCodCliController.text), nomcli: _txtNomCliController.text, agecli: int.parse(_txtAgeCliController.text), contador: 0, documentId: ''));
                     }
                     Navigator.of(context).pop();
                   },

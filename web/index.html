@@ -27,6 +27,24 @@
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+<script>
+
+  var firebaseConfig = {
+    apiKey: "AIzaSyAab-g5WlhOLE5GxWDicL0oR6hamDMuIrU",
+    authDomain: "flutterchat-v1.firebaseapp.com",
+    databaseURL: "https://flutterchat-v1.firebaseio.com",
+    projectId: "flutterchat-v1",
+    storageBucket: "flutterchat-v1.appspot.com",
+    messagingSenderId: "251435019054",
+    appId: "1:251435019054:web:a5d3c560955b1b9eda28bf",
+    measurementId: "G-X52XF80QC8"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+</script>
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->

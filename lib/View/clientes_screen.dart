@@ -51,7 +51,7 @@ class _ClientesScreenState extends State<ClientesScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => showDialog(context: context, builder: (ctx) => pageDetalheCliente(new Cliente(0, '', 0, 0))),
+        onPressed: () => showDialog(context: context, builder: (ctx) => pageDetalheCliente(new Cliente(codcli: 0, nomcli: '', agecli: 0, contador: 0, documentId: ''))),
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
